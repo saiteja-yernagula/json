@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <input type="text" id="inp1">
+    <input type="number" id="inp2">
+    <button onclick="fun()">click</button>
+
+    <button onclick="getdata()">get data</button>
+    <button onclick="postdata()">post data</button>
+
+    <script>    
+        function fun(){
+            var inp1 = document.getElementById("inp1").value;
+            var inp2 = document.getElementById("inp2").value;
+        
+            var data={
+            name:inp1,
+            age:inp2
+        };
+       
+
+
+
+        fetch(`http://localhost:3000/data`,{
+                method: 'POSt',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+
+
+
+
+        }
+
+        function getdata(){
+            fetch("http://localhost:3000/data?_sort=-id")
+            .then(response => response.json())
+            .then(data => console.log(data))
+
+        }
+
+      
+
+
+        function postdata(){
+            fetch(`http://localhost:3000/data`,{
+                method: 'POSt',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+
+        }
+
+
+    
+
+        
+
+
+
+
+        
+    </script>
+    
+</body>
+</html>
